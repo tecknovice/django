@@ -38,9 +38,17 @@
             </li>
             {% endif %}
             <hr/>
+            {% if user.is_staff %}
+            <li>Staff</li>
+            {% endif %}
             {% if perms.catalog.can_mark_returned %}
-                Staff
-                <li><a href="{% url 'borrowed' %}">All borrowed</a></li>
+                <li><a href="{% url 'all-borrowed' %}">All borrowed</a></li>
+            {% endif %}
+            {% if perms.catalog.add_book %}
+                <li><a href="{% url 'book-create' %}">Add book</a></li>
+            {% endif %}
+            {% if perms.catalog.add_author %}
+                <li><a href="{% url 'author-create' %}">Add author</a></li>
             {% endif %}
           </ul>
           {% endblock %}

@@ -10,7 +10,12 @@
 <p><strong>ISBN:</strong> {{ book.isbn }}</p>
 <p><strong>Language:</strong> {{ book.language }}</p>
 <p><strong>Genre:</strong> {{ book.genre.all|join:", " }}</p>
-
+{% if perms.catalog.change_book %}
+    <p><a href="{% url 'book-update' book.pk %}">Change book</a></p>
+{% endif %}
+{% if perms.catalog.delete_book %}
+    <p><a href="{% url 'book-delete' book.pk %}">Delete book</a></p>
+{% endif %}
 <div style="margin-left: 20px; margin-top: 20px">
   <h4>Copies</h4>
 
