@@ -35,14 +35,14 @@ from django.views import generic
 
 class BookListView(generic.ListView):
     model = Book
-    paginate_by = 2
+    paginate_by = 10
 
 class BookDetailView(generic.DetailView):
     model = Book
 
 class AuthorListView(generic.ListView):
     model = Author
-    paginate_by = 2
+    paginate_by = 10
 
 class AuthorDetailView(generic.DetailView):
     model = Author
@@ -53,7 +53,7 @@ class LoanedBooksByUserListView(LoginRequiredMixin, generic.ListView):
     """Generic class-based view listing books on loan to current user."""
     model = BookInstance
     template_name = 'catalog/bookinstance_list_borrowed_user.html'
-    paginate_by = 2
+    paginate_by = 10
 
     def get_queryset(self):
         return (
@@ -126,7 +126,7 @@ class AuthorCreate(PermissionRequiredMixin, CreateView):
     permission_required = 'catalog.add_author'
     model = Author
     fields = ['first_name', 'last_name', 'date_of_birth', 'date_of_death']
-    initial = {'date_of_death': '11/06/2020'}
+    initial = {'date_of_death': '12/31/2020'}
 
 class AuthorUpdate(PermissionRequiredMixin, UpdateView):
     permission_required = 'catalog.change_author'
